@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Load FBX with Three.js</title>
+    <script type="module">
+        import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
+        import { FBXLoader } from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/loaders/FBXLoader.js';
+
+        const sceneContainer = document.getElementById('scene-container');
+
+        const scene = new THREE.Scene();
+        console.log(scene);
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 5;
+
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        sceneContainer.appendChild(renderer.domElement);
+        console.log(renderer);
+        const loader = new FBXLoader();
+        let fbxModel;
+        console.log(renderer);
+        loader.load('models/test.fbx', (model) => {
+			console.log(model);
+            fbxModel = model;
+            scene.add(fbxModel);
+        });
+
+        const animate = () => {
+            requestAnimationFrame(animate);
+
+            if (fbxModel) {
+                fbxModel.rotation.x += 0.005;
+                fbxModel.rotation.y += 0.005;
+            }
+
+            renderer.render(scene, camera);
+        };
+
+        // animate();
+    </script>
+</head>
+<body>
+    <div id="scene-container"></div>
+</body>
+</html>
