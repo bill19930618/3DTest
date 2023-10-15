@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Load FBX with Three.js</title>
     <script type="module">
-        import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
-        import { FBXLoader } from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/loaders/FBXLoader.js';
+        import * as THREE from 'three';
+	import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+	import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
+	import Stats from 'three/examples/jsm/libs/stats.module'
 
         const sceneContainer = document.getElementById('scene-container');
 
